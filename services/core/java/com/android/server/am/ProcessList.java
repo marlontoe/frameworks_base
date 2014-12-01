@@ -246,12 +246,6 @@ final class ProcessList {
             Slog.i("XXXXXX", "minfree_adj=" + minfree_adj + " minfree_abs=" + minfree_abs);
         }
 
-        if (Build.SUPPORTED_64_BIT_ABIS.length > 0) {
-            // Increase the high min-free levels for cached processes for 64-bit
-            mOomMinFreeHigh[4] = 225000;
-            mOomMinFreeHigh[5] = 325000;
-        }
-
         for (int i=0; i<mOomAdj.length; i++) {
             if (ActivityManager.isLowRamDeviceStatic()) {
                 // Overwrite calculated LMK parameters with the low-tier tested/validated values
