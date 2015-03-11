@@ -1127,7 +1127,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 (ViewStub) mStatusBarWindowContent.findViewById(R.id.keyguard_user_switcher),
                 mKeyguardStatusBar, mNotificationPanel, mUserSwitcherController);
 
-
         // Set up the quick settings tile panel
         mQSPanel = (QSPanel) mStatusBarWindowContent.findViewById(R.id.quick_settings_panel);
         if (mQSPanel != null) {
@@ -1156,6 +1155,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     mQSPanel.setTiles(qsh.getTiles());
                 }
             });
+        }
+
+        if (mStatusBarWindowManager != null) {
+            mStatusBarWindowManager.setKeyguardMonitor(mKeyguardMonitor);
         }
 
         // User info. Trigger first load.
@@ -3520,7 +3523,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private void addStatusBarWindow() {
         makeStatusBarView();
         mStatusBarWindow.addContent(mStatusBarWindowContent);
-        mStatusBarWindowManager = new StatusBarWindowManager(mContext, mKeyguardMonitor);
+        mStatusBarWindowManager = new StatusBarWindowManager(mContext);
+        mStatusBarWindowManager.setKeyguardMonitor(mKeyguardMonitor);
         mStatusBarWindowManager.add(mStatusBarWindow, getStatusBarHeight());
     }
 
@@ -3805,6 +3809,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // this MUST happen before makeStatusBarView();
         haltTicker();
 
+        mKeyguardMonitor.removeCallbacks();
+
         makeStatusBarView();
         repositionNavigationBar();
         addHeadsUpView();
@@ -3925,12 +3931,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
      * @return True if we should recreate the status bar
      */
     private boolean shouldUpdateStatusbar(ThemeConfig oldTheme, ThemeConfig newTheme) {
-        return newTheme != null && (oldTheme == null || !newTheme.getOverlayForStatusBar()
-                .equals(oldTheme.getOverlayForStatusBar()) ||
-                !newTheme.getFontPkgName()
-                        .equals(oldTheme.getFontPkgName()) ||
-                !newTheme.getIconPackPkgName()
-                        .equals(oldTheme.getIconPackPkgName()) ||
+        // no newTheme, so no need to update status bar
+        if (newTheme == null) return false;
+
+        final String overlay = newTheme.getOverlayForStatusBar();
+        final String icons = newTheme.getIconPackPkgName();
+        final String fonts = newTheme.getFontPkgName();
+
+        return oldTheme == null ||
+                (overlay != null && !overlay.equals(oldTheme.getOverlayForStatusBar()) ||
+                (fonts != null && !fonts.equals(oldTheme.getFontPkgName())) ||
+                (icons != null && !icons.equals(oldTheme.getIconPackPkgName())) ||
                 newTheme.getLastThemeChangeRequestType() == RequestType.THEME_UPDATED);
     }
 
