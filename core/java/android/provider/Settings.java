@@ -1255,6 +1255,10 @@ public final class Settings {
             for (String s : Secure.NAVIGATION_RING_TARGETS) {
                 MOVED_TO_SECURE.add(s);
             }
+            MOVED_TO_SECURE.add(Secure.DEV_FORCE_SHOW_NAVBAR);
+            MOVED_TO_SECURE.add(Secure.KEYBOARD_BRIGHTNESS);
+            MOVED_TO_SECURE.add(Secure.BUTTON_BRIGHTNESS);
+            MOVED_TO_SECURE.add(Secure.BUTTON_BACKLIGHT_TIMEOUT);
         }
 
         private static final HashSet<String> MOVED_TO_GLOBAL;
@@ -2132,51 +2136,71 @@ public final class Settings {
         /**
          * The keyboard brightness to be used while the screen is on.
          * Valid value range is between 0 and {@link PowerManager#getMaximumKeyboardBrightness()}
+         * @deprecated Use {@link android.provider.Settings.Secure#KEYBOARD_BRIGHTNESS} instead
          * @hide
          */
-        public static final String KEYBOARD_BRIGHTNESS = "keyboard_brightness";
+        @Deprecated
+        public static final String KEYBOARD_BRIGHTNESS = Secure.KEYBOARD_BRIGHTNESS;
 
         /**
          * The button brightness to be used while the screen is on or after a button press,
          * depending on the value of {@link BUTTON_BACKLIGHT_TIMEOUT}.
          * Valid value range is between 0 and {@link PowerManager#getMaximumButtonBrightness()}
+         * @deprecated Use {@link android.provider.Settings.Secure#BUTTON_BRIGHTNESS} instead
          * @hide
          */
-        public static final String BUTTON_BRIGHTNESS = "button_brightness";
+        @Deprecated
+        public static final String BUTTON_BRIGHTNESS = Secure.BUTTON_BRIGHTNESS;
 
         /**
          * The time in ms to keep the button backlight on after pressing a button.
          * A value of 0 will keep the buttons on for as long as the screen is on.
-         * @hide
-         */
-        public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
-
-        /** Whether to allow one finger quick settings expansion on the right side of the statusbar.
-         *
-         * @hide
-         */
-        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
-
-        /** Whether to show the brightness slider in quick settings panel.
-         *
+         * @deprecated Use {@link android.provider.Settings.Secure#BUTTON_BACKLIGHT_TIMEOUT} instead
          * @hide
          */
         @Deprecated
-        public static final String QS_SHOW_BRIGHTNESS_SLIDER = "qs_show_brightness_slider";
+        public static final String BUTTON_BACKLIGHT_TIMEOUT = Secure.BUTTON_BACKLIGHT_TIMEOUT;
 
         /**
-         * Deprecated Use {@link android.provider.Settings.Secure.QS_TILES}
+         * Whether to allow one finger quick settings expansion on the right side of the statusbar.
+         * @deprecated Use {@link android.provider.Settings.System#QS_QUICK_PULLDOWN} instead
          * @hide
          */
         @Deprecated
-        public static final String QS_TILES = "sysui_qs_tiles";
+        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = System.QS_QUICK_PULLDOWN;
 
         /**
-         * Deprecated Use {@link android.provider.Settings.Secure.QS_USE_MAIN_TILES}
+         * Quick Settings Quick Pulldown
+         * 0 = off, 1 = right, 2 = left
+         * @hide
+         */
+        public static final String QS_QUICK_PULLDOWN = "qs_quick_pulldown";
+
+        /**
+         * Whether to show the brightness slider in quick settings panel.
+         * @deprecated Use {@link android.provider.Settings.Secure#QS_SHOW_BRIGHTNESS_SLIDER}
+         * instead
          * @hide
          */
         @Deprecated
-        public static final String QS_USE_MAIN_TILES = "sysui_qs_main_tiles";
+        public static final String QS_SHOW_BRIGHTNESS_SLIDER = Secure.QS_SHOW_BRIGHTNESS_SLIDER;
+
+        /**
+         * List of QS tile names
+         * @deprecated Use {@link android.provider.Settings.Secure#QS_TILES} instead
+         * @hide
+         */
+        @Deprecated
+        public static final String QS_TILES = Secure.QS_TILES;
+
+        /**
+         * Use "main" tiles on the first row of the quick settings panel
+         * 0 = no, 1 = yes
+         * @deprecated Use {@link android.provider.Settings.Secure#QS_USE_MAIN_TILES} instead
+         * @hide
+         */
+        @Deprecated
+        public static final String QS_USE_MAIN_TILES = Secure.QS_USE_MAIN_TILES;
 
         /**
          * Control whether the process CPU usage meter should be shown.
@@ -2595,11 +2619,12 @@ public final class Settings {
         public static final String TIME_12_24 = "time_12_24";
 
         /**
-        * Developer options - Navigation Bar show switch
-        * @hide
-        */
-        public static final String DEV_FORCE_SHOW_NAVBAR = "dev_force_show_navbar";
-
+         * Developer options - Navigation Bar show switch
+         * @deprecated Use {@link android.provider.Settings.Secure#DEV_FORCE_SHOW_NAVBAR} instead
+         * @hide
+         */
+        @Deprecated
+        public static final String DEV_FORCE_SHOW_NAVBAR = Secure.DEV_FORCE_SHOW_NAVBAR;
 
         /**
          * Date format string
@@ -3440,7 +3465,15 @@ public final class Settings {
         public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 
         /**
-         *  Enable statusbar double tap gesture on to put device to sleep
+         * Visibility of SIM icons of unpopulated SIM slots in MSIM mode
+         * 0: Hide unpopulated SIM icons
+         * 1: Show unpopulated SIM icons
+         * @hide
+         */
+        public static final String STATUS_BAR_MSIM_SHOW_EMPTY_ICONS = "status_bar_show_empty_sims";
+
+        /**
+         * Enable statusbar double tap gesture on to put device to sleep
          * @hide
          */
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
@@ -3459,6 +3492,12 @@ public final class Settings {
           * @hide
           */
          public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+
+        /**
+         * Show search bar in recents
+         * @hide
+         */
+        public static final String RECENTS_SHOW_SEARCH_BAR = "recents_show_search_bar";
 
         /**
          * Whether to enable voice wakeup.  The value is boolean (1 or 0).
@@ -3485,6 +3524,54 @@ public final class Settings {
          * @hide
          */
         public static final String T9_SEARCH_INPUT_LOCALE = "t9_search_input_locale";
+
+        /**
+         * Color temperature of the display during the day
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_DAY = "display_temperature_day";
+
+        /**
+         * Color temperature of the display at night
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_NIGHT = "display_temperature_night";
+
+        /**
+         * Display color temperature adjustment mode, one of DAY (default), NIGHT, or AUTO.
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_MODE = "display_temperature_mode";
+
+        /**
+         * Automatic outdoor mode
+         * @hide
+         */
+        public static final String DISPLAY_AUTO_OUTDOOR_MODE = "display_auto_outdoor_mode";
+
+        /**
+         * Use display power saving features such as CABC or CABL
+         * @hide
+         */
+        public static final String DISPLAY_LOW_POWER = "display_low_power";
+
+        /**
+         * Use color enhancement feature of display
+         * @hide
+         */
+        public static final String DISPLAY_COLOR_ENHANCE = "display_color_enhance";
+
+        /**
+         * Manual display color adjustments (RGB values as floats, separated by spaces)
+         * @hide
+         */
+        public static final String DISPLAY_COLOR_ADJUSTMENT = "display_color_adjustment";
+
+        /**
+         * Did we tell about how they can stop breaking their eyes?
+         * @hide
+         */
+        public static final String LIVE_DISPLAY_HINTED = "live_display_hinted";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -3563,7 +3650,12 @@ public final class Settings {
             STATUS_BAR_SHOW_BATTERY_PERCENT,
             INCREASING_RING,
             INCREASING_RING_START_VOLUME,
-            INCREASING_RING_RAMP_UP_TIME
+            INCREASING_RING_RAMP_UP_TIME,
+            DISPLAY_TEMPERATURE_NIGHT,
+            DISPLAY_TEMPERATURE_DAY,
+            DISPLAY_TEMPERATURE_MODE,
+            DISPLAY_AUTO_OUTDOOR_MODE,
+            LIVE_DISPLAY_HINTED
         };
 
         /**
@@ -3816,6 +3908,13 @@ public final class Settings {
         @Deprecated
         public static final String WIFI_WATCHDOG_PING_TIMEOUT_MS =
             Secure.WIFI_WATCHDOG_PING_TIMEOUT_MS;
+
+        /**
+         * Whether or not to launch default music player when headset is connected
+         * @hide
+         */
+        public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
+
     }
 
     /**
@@ -5896,8 +5995,8 @@ public final class Settings {
          */
         public static final String APP_PERFORMANCE_PROFILES_ENABLED = "app_perf_profiles_enabled";
 
-        /** Whether to show the brightness slider in quick settings panel.
-         *
+        /**
+         * Whether to show the brightness slider in quick settings panel.
          * @hide
          */
         public static final String QS_SHOW_BRIGHTNESS_SLIDER = "qs_show_brightness_slider";
@@ -5930,6 +6029,62 @@ public final class Settings {
                 "navigation_ring_targets_1",
                 "navigation_ring_targets_2",
         };
+
+        /**
+         * Whether to enable "advanced mode" for the current user.
+         * Boolean setting. 0 = no, 1 = yes.
+         * @hide
+         */
+        public static final String ADVANCED_MODE = "advanced_mode";
+
+        /**
+         * String to contain power menu actions
+         * @hide
+         */
+        public static final String POWER_MENU_ACTIONS = "power_menu_actions";
+
+        /**
+         * Developer options - Navigation Bar show switch
+         * @hide
+         */
+        public static final String DEV_FORCE_SHOW_NAVBAR = "dev_force_show_navbar";
+
+        /**
+         * The keyboard brightness to be used while the screen is on.
+         * Valid value range is between 0 and {@link PowerManager#getMaximumKeyboardBrightness()}
+         * @hide
+         */
+        public static final String KEYBOARD_BRIGHTNESS = "keyboard_brightness";
+
+        /**
+         * The button brightness to be used while the screen is on or after a button press,
+         * depending on the value of {@link BUTTON_BACKLIGHT_TIMEOUT}.
+         * Valid value range is between 0 and {@link PowerManager#getMaximumButtonBrightness()}
+         * @hide
+         */
+        public static final String BUTTON_BRIGHTNESS = "button_brightness";
+
+        /**
+         * The time in ms to keep the button backlight on after pressing a button.
+         * A value of 0 will keep the buttons on for as long as the screen is on.
+         * @hide
+         */
+        public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
+
+        /**
+         * Stored color matrix for LiveDisplay. This is used to allow co-existence with
+         * display tuning done by DisplayAdjustmentUtils when hardware support isn't
+         * available.
+         * @hide
+         */
+        public static final String LIVE_DISPLAY_COLOR_MATRIX = "live_display_color_matrix";
+
+        /**
+         * Whether to show the lockscreen visualizer.
+         * 0 will disable it, anything else will enable it. Default is on.
+         * @hide
+         */
+        public static final String LOCKSCREEN_VISUALIZER_ENABLED = "lockscreen_visualizer";
 
         /**
          * This are the settings to be backed up.
@@ -6371,9 +6526,11 @@ public final class Settings {
 
         /**
          * String to contain power menu actions
+         * @deprecated Use {@link android.provider.Settings.Secure#POWER_MENU_ACTIONS} instead
          * @hide
          */
-        public static final String POWER_MENU_ACTIONS = "power_menu_actions";
+        @Deprecated
+        public static final String POWER_MENU_ACTIONS = Secure.POWER_MENU_ACTIONS;
 
         /**
          * Whether Views are allowed to save their attribute data.
@@ -7677,6 +7834,12 @@ public final class Settings {
         public static final String POLICY_CONTROL_STYLE = "policy_control_style";
 
         /**
+         * @hide
+         */
+        public static final String ZEN_DISABLE_DUCKING_DURING_MEDIA_PLAYBACK =
+                "zen_disable_ducking_during_media_playback";
+
+        /**
          * Defines global zen mode.  ZEN_MODE_OFF, ZEN_MODE_IMPORTANT_INTERRUPTIONS,
          * or ZEN_MODE_NO_INTERRUPTIONS.
          *
@@ -7791,6 +7954,7 @@ public final class Settings {
         static {
             MOVED_TO_SECURE = new HashSet<String>(1);
             MOVED_TO_SECURE.add(Settings.Global.INSTALL_NON_MARKET_APPS);
+            MOVED_TO_SECURE.add(Settings.Secure.POWER_MENU_ACTIONS);
         }
 
         /**
@@ -7887,6 +8051,12 @@ public final class Settings {
          * @return the corresponding content URI, or null if not present
          */
         public static Uri getUriFor(String name) {
+            if (MOVED_TO_SECURE.contains(name)) {
+                Log.w(TAG, "Setting " + name + " has moved from android.provider.Settings.Global"
+                        + " to android.provider.Settings.Secure, returning Secure URI.");
+                return Secure.getUriFor(Secure.CONTENT_URI, name);
+            }
+
             return getUriFor(CONTENT_URI, name);
         }
 

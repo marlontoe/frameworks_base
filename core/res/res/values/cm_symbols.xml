@@ -205,6 +205,7 @@
     <java-symbol type="string" name="theme_install_error_message" />
     <!-- Package Manager -->
     <java-symbol type="array" name="config_disabledComponents" />
+    <java-symbol type="array" name="config_forceEnabledComponents" />
 
     <!-- Last app switch animations -->
     <java-symbol type="anim" name="last_app_in" />
@@ -227,6 +228,8 @@
     <java-symbol type="string" name="global_action_screenshot" />
     <java-symbol type="drawable" name="ic_lock_settings" />
     <java-symbol type="drawable" name="ic_lock_user" />
+    <java-symbol type="string" name="global_action_current_user" />
+    <java-symbol type="dimen" name="global_actions_avatar_size" />
 
     <!-- First boot install dialog -->
     <java-symbol type="string" name="android_installing_apk" />
@@ -246,4 +249,84 @@
     <!-- Blur effects -->
     <java-symbol type="bool" name="config_ui_blur_enabled" />
 
+    <!-- Storage -->
+    <java-symbol type="string" name="storage_usb" />
+    <java-symbol type="string" name="storage_uicc" />
+    <java-symbol type="bool" name="config_batterySdCardAccessibility" />
+
+    <!-- External media format -->
+    <java-symbol type="string" name="usb_extmedia_format_message" />
+    <java-symbol type="string" name="sd_extmedia_format_message" />
+
+    <!-- Strings for ExternalStorageFormatter service (SD card). -->
+    <java-symbol type="string" name="sd_progress_unmounting" />
+    <java-symbol type="string" name="sd_progress_erasing" />
+    <java-symbol type="string" name="sd_format_error" />
+    <java-symbol type="string" name="sd_media_bad_removal" />
+    <java-symbol type="string" name="sd_media_checking" />
+    <java-symbol type="string" name="sd_media_removed" />
+    <java-symbol type="string" name="sd_media_shared" />
+
+    <!-- Strings for ExternalStorageFormatter service (USB storage). -->
+    <java-symbol type="string" name="usb_progress_unmounting" />
+    <java-symbol type="string" name="usb_progress_erasing" />
+    <java-symbol type="string" name="usb_format_error" />
+    <java-symbol type="string" name="usb_media_bad_removal" />
+    <java-symbol type="string" name="usb_media_checking" />
+    <java-symbol type="string" name="usb_media_removed" />
+    <java-symbol type="string" name="usb_media_shared" />
+
+    <!-- SD card storage notification -->
+    <java-symbol type="string" name="sd_ext_media_badremoval_notification_message" />
+    <java-symbol type="string" name="sd_ext_media_badremoval_notification_title" />
+    <java-symbol type="string" name="sd_ext_media_checking_notification_message" />
+    <java-symbol type="string" name="sd_ext_media_checking_notification_title" />
+    <java-symbol type="string" name="sd_ext_media_nofs_notification_message" />
+    <java-symbol type="string" name="sd_ext_media_nofs_notification_title" />
+    <java-symbol type="string" name="sd_ext_media_nomedia_notification_message" />
+    <java-symbol type="string" name="sd_ext_media_nomedia_notification_title" />
+    <java-symbol type="string" name="sd_ext_media_safe_unmount_notification_message" />
+    <java-symbol type="string" name="sd_ext_media_safe_unmount_notification_title" />
+    <java-symbol type="string" name="sd_ext_media_unmountable_notification_message" />
+    <java-symbol type="string" name="sd_ext_media_unmountable_notification_title" />
+
+    <!-- USB storage notification -->
+    <java-symbol type="string" name="usb_ext_media_badremoval_notification_message" />
+    <java-symbol type="string" name="usb_ext_media_badremoval_notification_title" />
+    <java-symbol type="string" name="usb_ext_media_checking_notification_message" />
+    <java-symbol type="string" name="usb_ext_media_checking_notification_title" />
+    <java-symbol type="string" name="usb_ext_media_nofs_notification_message" />
+    <java-symbol type="string" name="usb_ext_media_nofs_notification_title" />
+    <java-symbol type="string" name="usb_ext_media_nomedia_notification_message" />
+    <java-symbol type="string" name="usb_ext_media_nomedia_notification_title" />
+    <java-symbol type="string" name="usb_ext_media_safe_unmount_notification_message" />
+    <java-symbol type="string" name="usb_ext_media_safe_unmount_notification_title" />
+    <java-symbol type="string" name="usb_ext_media_unmountable_notification_message" />
+    <java-symbol type="string" name="usb_ext_media_unmountable_notification_title" />
+
+    <!-- LiveDisplay -->
+    <java-symbol type="string" name="live_display_title" />
+    <java-symbol type="string" name="live_display_hint" />
+    <java-symbol type="string" name="live_display_auto" />
+    <java-symbol type="string" name="live_display_auto_summary" />
+    <java-symbol type="string" name="live_display_day" />
+    <java-symbol type="string" name="live_display_day_summary" />
+    <java-symbol type="string" name="live_display_night" />
+    <java-symbol type="string" name="live_display_night_summary" />
+    <java-symbol type="string" name="live_display_outdoor" />
+    <java-symbol type="string" name="live_display_outdoor_summary" />
+    <java-symbol type="array" name="live_display_entries" />
+    <java-symbol type="array" name="live_display_summaries" />
+    <java-symbol type="array" name="live_display_values" />
+    <java-symbol type="drawable" name="ic_livedisplay_notif" />
+
+    <java-symbol type="integer" name="config_dayColorTemperature" />
+    <java-symbol type="integer" name="config_nightColorTemperature" />
+    <java-symbol type="integer" name="config_outdoorAmbientLux" />
+
+    <java-symbol type="string" name="lock_to_app_toast_no_navbar" />
+    <java-symbol type="string" name="lock_to_app_description_no_navbar" />
+
+    <!-- Advanced settings switch -->
+    <java-symbol type="bool" name="config_advancedSettingsMode" />
 </resources>

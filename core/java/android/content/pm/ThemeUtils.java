@@ -101,11 +101,17 @@ public class ThemeUtils {
 
     private static final String MEDIA_CONTENT_URI = "content://media/internal/audio/media";
 
+    // Constants for theme change broadcast
     public static final String ACTION_THEME_CHANGED = "org.cyanogenmod.intent.action.THEME_CHANGED";
-
     public static final String CATEGORY_THEME_COMPONENT_PREFIX = "org.cyanogenmod.intent.category.";
+    public static final String EXTRA_COMPONENTS = "components";
+    public static final String EXTRA_REQUEST_TYPE = "request_type";
+    public static final String EXTRA_UPDATE_TIME = "update_time";
 
     public static final int SYSTEM_TARGET_API = 0;
+
+    // Package name for any app which does not have a specific theme applied
+    private static final String DEFAULT_PKG = "default";
 
     private static final String SETTINGS_DB =
             "/data/data/com.android.providers.settings/databases/settings.db";
@@ -714,5 +720,17 @@ public class ThemeUtils {
         }
 
         return config;
+    }
+
+    /**
+     * Convenience method to determine if a theme component is a per app theme and not a standard
+     * component.
+     * @param component
+     * @return
+     */
+    public static boolean isPerAppThemeComponent(String component) {
+        return !(DEFAULT_PKG.equals(component)
+                || ThemeConfig.SYSTEMUI_STATUS_BAR_PKG.equals(component)
+                || ThemeConfig.SYSTEMUI_NAVBAR_PKG.equals(component));
     }
 }

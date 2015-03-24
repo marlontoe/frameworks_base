@@ -63,6 +63,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.hardware.CmHardwareManager;
 import android.hardware.ConsumerIrManager;
 import android.hardware.ISerialManager;
 import android.hardware.SerialManager;
@@ -789,6 +790,11 @@ class ContextImpl extends Context {
                 final Context outerContext = ctx.getOuterContext();
                 return new TorchManager(outerContext, service);
             }});
+
+        registerService(CMHW_SERVICE, new ServiceFetcher() {
+            public Object createService(ContextImpl ctx) {
+                return new CmHardwareManager(ctx);
+            }});
     }
 
     static ContextImpl getImpl(Context context) {
@@ -865,6 +871,13 @@ class ContextImpl extends Context {
             mTheme.applyStyle(mThemeResource, true);
         }
         return mTheme;
+    }
+
+    @Override
+    public void recreateTheme() {
+        Resources.Theme newTheme = mResources.newTheme();
+        newTheme.applyStyle(mThemeResource, true);
+        mTheme.setTo(newTheme);
     }
 
     @Override

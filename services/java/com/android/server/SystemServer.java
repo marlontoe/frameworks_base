@@ -993,12 +993,14 @@ public final class SystemServer {
                 mSystemServiceManager.startService(TvInputManagerService.class);
             }
 
-            try {
-                Slog.i(TAG, "Theme Service");
-                themeService = new ThemeService(context);
-                ServiceManager.addService(Context.THEME_SERVICE, themeService);
-            } catch (Throwable e) {
-                reportWtf("starting Theme Service", e);
+            if (!disableNonCoreServices && !mOnlyCore) {
+                try {
+                    Slog.i(TAG, "Theme Service");
+                    themeService = new ThemeService(context);
+                    ServiceManager.addService(Context.THEME_SERVICE, themeService);
+                } catch (Throwable e) {
+                    reportWtf("starting Theme Service", e);
+                }
             }
 
             if (!disableNonCoreServices) {
@@ -1021,6 +1023,15 @@ public final class SystemServer {
                     reportWtf("starting BackgroundDexOptService", e);
                 }
 
+            }
+
+            if (!disableNonCoreServices) {
+                try {
+                    Slog.i(TAG, "CmHardwareService");
+                    ServiceManager.addService(Context.CMHW_SERVICE, new CmHardwareService(context));
+                } catch (Throwable e) {
+                    reportWtf("starting CMHW Service", e);
+                }
             }
 
             mSystemServiceManager.startService(LauncherAppsService.class);

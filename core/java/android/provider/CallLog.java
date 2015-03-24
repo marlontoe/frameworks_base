@@ -541,20 +541,19 @@ public class CallLog {
                 if (ci.normalizedNumber != null) {
                     final String normalizedPhoneNumber = ci.normalizedNumber;
                     cursor = resolver.query(Phone.CONTENT_URI,
-                            new String[] { Phone._ID },
-                            Phone.CONTACT_ID + " =? AND " + Phone.NORMALIZED_NUMBER + " =?",
-                            new String[] { String.valueOf(ci.contactIdOrZero),
-                                    normalizedPhoneNumber},
-                            null);
+                        new String[] { Phone._ID },
+                        Phone.CONTACT_ID + " =? AND " + Phone.NORMALIZED_NUMBER + " =?",
+                        new String[] { String.valueOf(ci.contactIdOrZero), normalizedPhoneNumber},
+                        null);
                 } else {
                     final String phoneNumber = ci.phoneNumber != null ? ci.phoneNumber : number;
                     cursor = resolver.query(
-                            Uri.withAppendedPath(Callable.CONTENT_FILTER_URI,
-                                    Uri.encode(phoneNumber)),
-                            new String[] { Phone._ID },
-                            Phone.CONTACT_ID + " =?",
-                            new String[] { String.valueOf(ci.contactIdOrZero) },
-                            null);
+                        Uri.withAppendedPath(Callable.CONTENT_FILTER_URI,
+                                Uri.encode(phoneNumber)),
+                        new String[] { Phone._ID },
+                        Phone.CONTACT_ID + " =?",
+                        new String[] { String.valueOf(ci.contactIdOrZero) },
+                        null);
                 }
 
                 if (cursor != null) {
@@ -570,6 +569,7 @@ public class CallLog {
                         }
                     } finally {
                         cursor.close();
+
                     }
                 }
             }

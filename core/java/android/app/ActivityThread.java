@@ -2343,16 +2343,14 @@ public final class ActivityThread {
 
         final DisplayManagerGlobal dm = DisplayManagerGlobal.getInstance();
         try {
-            IActivityContainer container =
-                    ActivityManagerNative.getDefault().getEnclosingActivityContainer(r.token);
-            final int displayId =
-                    container == null ? Display.DEFAULT_DISPLAY : container.getDisplayId();
+            int displayId = ActivityManagerNative.getDefault().getActivityDisplayId(r.token);
             if (displayId > Display.DEFAULT_DISPLAY) {
                 Display display = dm.getRealDisplay(displayId, r.token);
                 baseContext = appContext.createDisplayContext(display);
             }
         } catch (RemoteException e) {
         }
+
 
         // For debugging purposes, if the activity's package name contains the value of
         // the "debug.use-second-display" system property as a substring, then show
@@ -4119,8 +4117,8 @@ public final class ActivityThread {
         if (configDiff != 0) {
             // Ask text layout engine to free its caches if there is a locale change
             boolean hasLocaleConfigChange = ((configDiff & ActivityInfo.CONFIG_LOCALE) != 0);
-            boolean hasThemeConfigChange = ((configDiff & ActivityInfo.CONFIG_THEME_RESOURCE) != 0);
-            if (hasLocaleConfigChange || hasThemeConfigChange) {
+            boolean hasFontConfigChange = ((configDiff & ActivityInfo.CONFIG_THEME_FONT) != 0);
+            if (hasLocaleConfigChange || hasFontConfigChange) {
                 Canvas.freeTextLayoutCaches();
                 Typeface.recreateDefaults();
                 if (DEBUG_CONFIGURATION) Slog.v(TAG, "Cleared TextLayout Caches");

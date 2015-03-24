@@ -41,6 +41,10 @@ import com.android.systemui.statusbar.phone.PhoneStatusBar;
 
 public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.Callback, ExpandHelper.Callback,
         ViewTreeObserver.OnComputeInternalInsetsListener {
+
+    public static final int DIRECTION_X = 0;
+    public static final int DIRECTION_Y = 1;
+
     private static final String TAG = "HeadsUpNotificationView";
     private static final boolean DEBUG = false;
     private static final boolean SPEW = DEBUG;
@@ -61,6 +65,8 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
 
     private NotificationData.Entry mHeadsUp;
 
+    private static int sRoundedRectCornerRadius = 0;
+
     public HeadsUpNotificationView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -69,6 +75,8 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
         super(context, attrs, defStyle);
         mTouchSensitivityDelay = getResources().getInteger(R.integer.heads_up_sensitivity_delay);
         if (DEBUG) Log.v(TAG, "create() " + mTouchSensitivityDelay);
+        sRoundedRectCornerRadius = context.getResources().getDimensionPixelSize(
+                R.dimen.notification_material_rounded_rect_radius);
     }
 
     public void updateResources() {
@@ -189,9 +197,10 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
             int outlineTop = view.getPaddingTop();
 
             // Apply padding to shadow.
-            outline.setRect(outlineLeft, outlineTop,
+            outline.setRoundRect(outlineLeft, outlineTop,
                     view.getWidth() - outlineLeft - view.getPaddingRight(),
-                    view.getHeight() - outlineTop - view.getPaddingBottom());
+                    view.getHeight() - outlineTop - view.getPaddingBottom(),
+                    sRoundedRectCornerRadius);
         }
     };
 
@@ -323,7 +332,7 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
     @Override
     public void onChildDismissed(View v) {
         Log.v(TAG, "User swiped heads up to dismiss");
-        mBar.onHeadsUpDismissed();
+        mBar.onHeadsUpDismissed(DIRECTION_X);
     }
 
     @Override
@@ -406,7 +415,7 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
                         }
                         if (dY < 0) {
                             if (DEBUG_EDGE_SWIPE) Log.d(TAG, "found a close");
-                            mBar.onHeadsUpDismissed();
+                            mBar.onHeadsUpDismissed(DIRECTION_Y);
                         }
                         mConsuming = true;
                     }

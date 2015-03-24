@@ -36,7 +36,7 @@
   <string name="permlab_receiveProtectedSms">ricevere SMS protetti</string>
   <string name="permdesc_receiveProtectedSms">Consenti all\'app di ricevere SMS protetti.</string>
   <string name="permlab_modifyProtectedSmsList">modifica la lista di SMS protetti</string>
-  <string name="permdesc_modifyProtectedSmsList">Permette all\'app di modificare la lista indirizzi SMS protetta.</string>
+  <string name="permdesc_modifyProtectedSmsList">Consente all\'app di modificare la lista indirizzi SMS protetta.</string>
   <string name="permgrouplab_security">Sicurezza</string>
   <string name="permgroupdesc_security">Autorizzazioni relative alle informazioni sulla sicurezza del dispositivo.</string>
   <string name="permlab_accessThemeService">accede al servizio tema</string>
@@ -60,6 +60,7 @@
   <string name="privacy_guard_dialog_title">Privacy Guard</string>
   <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> vorrebbe <xliff:g id="op">%2$s</xliff:g>.</string>
   <string name="global_action_reboot">Riavvia</string>
+  <string name="global_action_current_user">Corrente</string>
   <string name="reboot_reboot">Riavvia</string>
   <string name="reboot_recovery">Recovery</string>
   <string name="reboot_bootloader">Bootloader</string>
@@ -74,6 +75,8 @@
   <string name="adb_both_active_notification_title">ADB attraverso USB &amp; rete attivato</string>
   <string name="adb_active_generic_notification_message">Tocca per disattivare il debug.</string>
   <string name="usb_choose_notification_title">Tocca per selezionare le opzioni USB.</string>
+  <string name="permlab_interceptPackageLaunch">Intercetta lancio app</string>
+  <string name="permdesc_interceptPackageLaunch">Consenti all\'app di intercettare il lancio delle altre app</string>
   <string name="app_ops_access_camera">accedere alla fotocamera</string>
   <string name="app_ops_access_location">accedere alla posizione</string>
   <string name="app_ops_access_notifications">leggere le tue notifiche</string>
@@ -153,8 +156,38 @@
   <string name="android_installing_title">Installazione di android\u2026</string>
   <string name="theme_reset_notification_title">Reset tema</string>
   <string name="theme_reset_notification_body">Tema di sistema ripristinato a causa di molteplici crash.</string>
+  <string name="stylus_app_not_installed">%s non è installato</string>
   <string name="permlab_interceptSmsSent">intercetta SMS in uscita</string>
   <string name="permdesc_interceptSmsSent">Permette all\'app di intercettare un SMS in uscita. App malevole potrebbero usarla per impedire la spedizione degli SMS.</string>
   <string name="permlab_accessTorchService">accesso servizio torcia</string>
   <string name="permdesc_accessTorchService">Consente ad un\'app di accedere alla torcia. Non dovrebbe essere mai richiesto per le normali applicazioni.</string>
+  <string name="permlab_preventpower">cambia comportamento tasto spegnimento</string>
+  <string name="permdesc_preventpower">Consente a un\'app di cambiare il comportamento del tasto di spegnimento.</string>
+  <string name="usb_extmedia_format_message">Tutti i dati nell\'archivio USB (sotto il percorso \'%1$s\') saranno eliminati. Questa operazione non può essere annullata!</string>
+  <string name="sd_extmedia_format_message">Tutti i dati sulla scheda SD (sotto il percorso \'%1$s\') saranno eliminati. Questa azione non può essere annullata!</string>
+  <string name="sd_progress_unmounting">Smontando scheda SD\u2026</string>
+  <string name="sd_progress_erasing">Cancellando scheda SD\u2026</string>
+  <string name="sd_format_error">Impossibile cancellare scheda SD.</string>
+  <string name="sd_media_bad_removal">La scheda SD è stata rimossa prima di essere smontata.</string>
+  <string name="sd_media_checking">Controllo della scheda SD in corso.</string>
+  <string name="sd_media_removed">La scheda SD è stata rimossa.</string>
+  <string name="sd_media_shared">La scheda SD è attualmente utilizzata da un computer.</string>
+  <string name="usb_progress_unmounting">Smontando archivio USB\u2026</string>
+  <string name="usb_progress_erasing">Cancellando archivio USB\u2026</string>
+  <string name="usb_format_error">Impossibile cancellare l\'archivio USB.</string>
+  <string name="usb_media_bad_removal">L\'archivio USB è stato rimosso prima di essere smontato.</string>
+  <string name="usb_media_checking">Controllo dell\'archivio USB in corso.</string>
+  <string name="usb_media_removed">L\'archivio USB è stato rimosso.</string>
+  <string name="usb_media_shared">L\'archivio USB è attualmente utilizzato da un computer.</string>
+  <string name="live_display_auto">Automatico</string>
+  <string name="live_display_auto_summary">Regola automaticamente la temperatura del colore dello schermo dopo il tramonto e l\'alba</string>
+  <string name="live_display_off">Disattivato</string>
+  <string name="live_display_off_summary">Disattiva tutte le regolazioni</string>
+  <string name="live_display_day">Giorno</string>
+  <string name="live_display_day_summary">Usa solo impostazioni giorno</string>
+  <string name="live_display_night">Notte</string>
+  <string name="live_display_night_summary">Utilizza solo impostazioni notte</string>
+  <string name="live_display_outdoor">All\'aperto (sole)</string>
+  <string name="live_display_outdoor_summary">Utilizza solo impostazioni all\'aperto</string>
+  <string name="live_display_hint">LiveDisplay aiuta a ridurre l\'affaticamento degli occhi e aiuta a dormire di notte. Clicca per provarlo!</string>
 </resources>
